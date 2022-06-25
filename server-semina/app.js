@@ -9,6 +9,8 @@ const app = express();
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 const v1 = '/api/v1/cms';
+
+// (1) import categories router
 const categoriesRouter = require('./app/api/v1/categories/router');
 
 app.use(logger('dev'));
@@ -24,6 +26,8 @@ app.get('/', (req, res) => {
 });
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
+
+// (2) gunakan categories router
 app.use(v1, categoriesRouter);
 
 module.exports = app;
