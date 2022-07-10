@@ -5,12 +5,8 @@ const logger = require('morgan');
 
 const app = express();
 
-// router
-// var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
+// (1) Import Router
 const v1 = '/api/v1/cms';
-
-// (1) import categories router
 const categoriesRouter = require('./app/api/v1/categories/router');
 const imagesRouter = require('./app/api/v1/images/router');
 const talentsRouter = require('./app/api/v1/talents/router');
@@ -30,10 +26,8 @@ app.get('/', (req, res) => {
         message: 'Welcome to api semina',
     })
 });
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
 
-// (2) gunakan categories router
+// (2) Gunakan Router
 app.use(v1, categoriesRouter);
 app.use(v1, imagesRouter);
 app.use(v1, talentsRouter);
