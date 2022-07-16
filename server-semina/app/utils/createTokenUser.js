@@ -13,7 +13,6 @@ const createTokenParticipant = (participant) => {
       participantId: participant._id,
       firstName: participant.firstName,
       email: participant.email,
-    //   type: 'participant',
     };
   };
 

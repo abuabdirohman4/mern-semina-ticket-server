@@ -10,12 +10,14 @@ const { StatusCodes } = require('http-status-codes');
 
 const create = async (req, res, next) => {
     try {
+        // console.log(req)
         const result = await createEvents(req);
 
         res.status(StatusCodes.CREATED).json({
             data: result,
         });
     } catch (err) {
+        console.log(err)
         next(err);
     }
 };
