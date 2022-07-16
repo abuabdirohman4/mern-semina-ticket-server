@@ -26,7 +26,7 @@ const {authenticateUser, authorizeRoles } = require('../../../middlewares/auth')
 //     });
 // });
 
-router.get('/categories', authenticateUser, authorizeRoles('organizer'), authorizeRoles('organizer'), index);
+router.get('/categories', authenticateUser, authorizeRoles('organizer'), index);
 
 router.post('/categories', authenticateUser, authorizeRoles('organizer'), create);
 
