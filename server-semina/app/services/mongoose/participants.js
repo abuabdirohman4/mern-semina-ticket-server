@@ -2,7 +2,7 @@ const Participant = require('../../api/v1/participants/model');
 // const Events = require('../../api/v1/events/model');
 // const Orders = require('../../api/v1/orders/model');
 const { otpMail } = require('../mail');
-// const { BadRequestError, NotFoundError, UnauthorizedError } = require('../../errors');
+const { BadRequestError, NotFoundError, UnauthorizedError } = require('../../errors');
 
 // const { createTokenUser, createJWT } = require('../../utils');
 
@@ -40,9 +40,26 @@ const signupParticipant = async (req) => {
   return result;
 };
 
+const activateParticipant = async (req) => {
+  const { otp, email } = req.body;
+  const check = await Participant.findOne({
+    email,
+  });
+
+  if (!check) throw new NotFoundError('Partisipan belum terdaftar');
+
+  if (check && check.otp !== otp) throw new BadRequestError('Kode otp salah');
+
+  const result = await Participant.findByIdAndUpdate(check._id, {
+    status: 'aktif',
+  });
+
+  return result;
+};
+
 module.exports = {
   signupParticipant,
-  // activateParticipant,
+  activateParticipant,
   // signinParticipant,
   // getAllEvents,
   // getOneEvent,

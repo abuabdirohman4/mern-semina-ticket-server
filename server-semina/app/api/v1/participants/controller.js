@@ -1,6 +1,6 @@
 const {
     signupParticipant,
-    // activateParticipant,
+    activateParticipant,
     // signinParticipant,
     // getAllEvents,
     // getOneEvent,
@@ -33,58 +33,58 @@ const activeParticipant = async (req, res, next) => {
     }
 };
 
-const signin = async (req, res, next) => {
-    try {
-        const result = await signinParticipant(req);
+// const signin = async (req, res, next) => {
+//     try {
+//         const result = await signinParticipant(req);
 
-        res.status(StatusCodes.OK).json({
-            data: { token: result },
-        });
-    } catch (err) {
-        next(err);
-    }
-};
+//         res.status(StatusCodes.OK).json({
+//             data: { token: result },
+//         });
+//     } catch (err) {
+//         next(err);
+//     }
+// };
 
-const getAllLandingPage = async (req, res, next) => {
-    try {
-        const result = await getAllEvents(req);
+// const getAllLandingPage = async (req, res, next) => {
+//     try {
+//         const result = await getAllEvents(req);
 
-        res.status(StatusCodes.OK).json({
-            data: result,
-        });
-    } catch (err) {
-        next(err);
-    }
-};
-const getDashboard = async (req, res, next) => {
-    try {
-        const result = await getAllOrders(req);
+//         res.status(StatusCodes.OK).json({
+//             data: result,
+//         });
+//     } catch (err) {
+//         next(err);
+//     }
+// };
+// const getDashboard = async (req, res, next) => {
+//     try {
+//         const result = await getAllOrders(req);
 
-        res.status(StatusCodes.OK).json({
-            data: result,
-        });
-    } catch (err) {
-        next(err);
-    }
-};
+//         res.status(StatusCodes.OK).json({
+//             data: result,
+//         });
+//     } catch (err) {
+//         next(err);
+//     }
+// };
 
-const getDetailLandingPage = async (req, res, next) => {
-    try {
-        const result = await getOneEvent(req);
+// const getDetailLandingPage = async (req, res, next) => {
+//     try {
+//         const result = await getOneEvent(req);
 
-        res.status(StatusCodes.OK).json({
-            data: result,
-        });
-    } catch (err) {
-        next(err);
-    }
-};
+//         res.status(StatusCodes.OK).json({
+//             data: result,
+//         });
+//     } catch (err) {
+//         next(err);
+//     }
+// };
 
 module.exports = {
     signup,
     activeParticipant,
-    signin,
-    getAllLandingPage,
-    getDetailLandingPage,
-    getDashboard,
+    // signin,
+    // getAllLandingPage,
+    // getDetailLandingPage,
+    // getDashboard,
 };
