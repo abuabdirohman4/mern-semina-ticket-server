@@ -7,5 +7,17 @@ const createTokenUser = (user) => {
         organizer: user.organizer,
     };
 };
+const createTokenParticipant = (participant) => {
+    return {
+      lastName: participant.lastName,
+      participantId: participant._id,
+      firstName: participant.firstName,
+      email: participant.email,
+    //   type: 'participant',
+    };
+  };
 
-module.exports = createTokenUser;
+module.exports = {
+    createTokenUser,
+    createTokenParticipant,
+};

@@ -3,7 +3,7 @@ const router = express();
 const {
   signup,
   activeParticipant,
-  // signin,
+  signin,
   // getAllLandingPage,
   // getDetailLandingPage,
   // getDashboard,
@@ -11,7 +11,7 @@ const {
 const { authenticateParticipant } = require('../../../middlewares/auth');
 
 router.post('/auth/signup', signup);
-// router.post('/auth/signin', signin);
+router.post('/auth/signin', signin);
 router.put('/active', activeParticipant);
 // router.get('/events', getAllLandingPage);
 // router.get('/events/:id', getDetailLandingPage);

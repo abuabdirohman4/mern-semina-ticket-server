@@ -4,7 +4,7 @@ const Participant = require('../../api/v1/participants/model');
 const { otpMail } = require('../mail');
 const { BadRequestError, NotFoundError, UnauthorizedError } = require('../../errors');
 
-// const { createTokenUser, createJWT } = require('../../utils');
+const { createTokenUser, createJWT } = require('../../utils');
 
 const signupParticipant = async (req) => {
   const { firstName, lastName, email, password, role } = req.body;
@@ -57,10 +57,38 @@ const activateParticipant = async (req) => {
   return result;
 };
 
+const signinParticipant = async (req) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    throw new BadRequestError('Please provide email and password');
+  }
+
+  const result = await Participant.findOne({ email: email });
+
+  if (!result) {
+    throw new UnauthorizedError('Invalid Credentials');
+  }
+
+  if (result.status === 'tidak aktif') {
+    throw new UnauthorizedError('Akun anda belum aktif');
+  }
+
+  const isPasswordCorrect = await result.comparePassword(password);
+
+  if (!isPasswordCorrect) {
+    throw new UnauthorizedError('Invalid Credentials');
+  }
+
+  const token = createJWT({ payload: createTokenUser(result, 'participant') });
+
+  return token;
+};
+
 module.exports = {
   signupParticipant,
   activateParticipant,
-  // signinParticipant,
+  signinParticipant,
   // getAllEvents,
   // getOneEvent,
   // getAllOrders,
