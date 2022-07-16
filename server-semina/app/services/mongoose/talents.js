@@ -41,7 +41,7 @@ const createTalents = async (req) => {
     // apa bila check true / data talents sudah ada maka kita tampilkan error bad request dengan message pembicara duplikat
     if (check) throw new BadRequestError('pembicara sudah terdaftar');
 
-    const result = await Talents.create({ name, image, role });
+    const result = await Talents.create({ name, image, role, organizer: req.user.organizer });
 
     return result;
 };
