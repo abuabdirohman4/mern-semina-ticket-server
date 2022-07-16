@@ -1,13 +1,18 @@
 const mongoose = require('mongoose');
 const { model, Schema } = mongoose;
 
-let categorySchema = Schema (
+let categorySchema = Schema(
     {
         name: {
             type: String,
             minLength: [3, 'Panjang nama kategori minimal 3 karakter'],
             maxLength: [20, 'Panjang nama kategori maksimal 26 karakter'],
             required: [true, 'Nama kategori harus diisi'],
+        },
+        organizer: {
+            type: mongoose.Types.ObjectId,
+            ref: 'Organizer',
+            required: true,
         },
     },
     {

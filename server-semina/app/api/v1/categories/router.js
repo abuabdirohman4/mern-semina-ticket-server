@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express();
 const { create, index, find, update, destroy } = require('./controller');
+const {authenticateUser, authorizeRoles } = require('../../../middlewares/auth');
 
 // router.get('/categories', (req, res) => {
 //     // console.log(req.query);
@@ -25,14 +26,14 @@ const { create, index, find, update, destroy } = require('./controller');
 //     });
 // });
 
-router.get('/categories', index);
+router.get('/categories', authenticateUser, index);
 
-router.post('/categories', create);
+router.post('/categories', authenticateUser, create);
 
-router.get('/categories/:id', find);
+router.get('/categories/:id', authenticateUser, find);
 
-router.put('/categories/:id', update);
+router.put('/categories/:id', authenticateUser, update);
 
-router.delete('/categories/:id', destroy);
+router.delete('/categories/:id', authenticateUser, destroy);
 
 module.exports = router;
