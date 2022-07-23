@@ -49,10 +49,10 @@ const authenticateParticipant = async (req, res, next) => {
 
         // Attach the user and his permissions to the req object
         req.participant = {
+            id: payload.participantId,
+            firstName: payload.firstName,
             email: payload.email,
             lastName: payload.lastName,
-            firstName: payload.firstName,
-            id: payload.participantId,
         };
 
         next();

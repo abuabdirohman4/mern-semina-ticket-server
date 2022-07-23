@@ -1,10 +1,10 @@
 const Participant = require('../../api/v1/participants/model');
 const Events = require('../../api/v1/events/model');
-// const Orders = require('../../api/v1/orders/model');
+const Orders = require('../../api/v1/orders/model');
 const { otpMail } = require('../mail');
 const { BadRequestError, NotFoundError, UnauthorizedError } = require('../../errors');
 
-const { createTokenUser, createJWT } = require('../../utils');
+const { createTokenParticipant, createJWT } = require('../../utils');
 
 const signupParticipant = async (req) => {
   const { firstName, lastName, email, password, role } = req.body;
@@ -36,6 +36,8 @@ const signupParticipant = async (req) => {
   await otpMail(email, result);
 
   delete result._doc.password;
+  // delete otp dari network
+  delete result._doc.otp;
 
   return result;
 };
@@ -80,7 +82,7 @@ const signinParticipant = async (req) => {
     throw new UnauthorizedError('Invalid Credentials');
   }
 
-  const token = createJWT({ payload: createTokenUser(result, 'participant') });
+  const token = createJWT({ payload: createTokenParticipant(result, 'participant') });
 
   return token;
 };
@@ -107,16 +109,17 @@ const getOneEvent = async (req) => {
   return result;
 };
 
-// const getAllOrders = async (req) => {
-//   const result = await Orders.find({ participant: req.user.id });
-//   return result;
-// };
+const getAllOrders = async (req) => {
+  console.log(req.participant)
+  const result = await Orders.find({ participant: req.participant.id });
+  return result;
+};
 
-module.exports = {
+module.exports = { 
   signupParticipant,
   activateParticipant,
   signinParticipant,
   getAllEvents,
   getOneEvent,
-  // getAllOrders,
+  getAllOrders,
 };
