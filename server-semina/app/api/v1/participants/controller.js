@@ -3,7 +3,7 @@ const {
     activateParticipant,
     signinParticipant,
     getAllEvents,
-    // getOneEvent,
+    getOneEvent,
     // getAllOrders,
 } = require('../../../services/mongoose/participants');
 
@@ -57,21 +57,21 @@ const getAllLandingPage = async (req, res, next) => {
     }
 };
 
+const getDetailLandingPage = async (req, res, next) => {
+    try {
+        const result = await getOneEvent(req);
+
+        res.status(StatusCodes.OK).json({
+            data: result,
+        });
+    } catch (err) {
+        next(err);
+    }
+};
+
 // const getDashboard = async (req, res, next) => {
 //     try {
 //         const result = await getAllOrders(req);
-
-//         res.status(StatusCodes.OK).json({
-//             data: result,
-//         });
-//     } catch (err) {
-//         next(err);
-//     }
-// };
-
-// const getDetailLandingPage = async (req, res, next) => {
-//     try {
-//         const result = await getOneEvent(req);
 
 //         res.status(StatusCodes.OK).json({
 //             data: result,
@@ -86,6 +86,6 @@ module.exports = {
     activeParticipant,
     signin,
     getAllLandingPage,
-    // getDetailLandingPage,
+    getDetailLandingPage,
     // getDashboard,
 };
