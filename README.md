@@ -1,2 +1,2 @@
-# sc-16-semina-ticket-mern
-Semina Ticker App With MERN Technology
+# SEMINA - TICKETING ONLINE
+Semina - Ticketing Online App with MERN Technology
