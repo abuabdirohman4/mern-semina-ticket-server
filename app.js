@@ -15,6 +15,7 @@ const organizersRouter = require('./app/api/v1/organizers/router');
 const authCMSRouter = require('./app/api/v1/auth/router');
 const ordersRouter = require('./app/api/v1/orders/router');
 const participantsRouter = require('./app/api/v1/participants/router');
+const userRefreshTokenRouter = require('./app/api/v1/userRefreshToken/router');
 
 // Middleware
 const notFoundMiddleware = require('./app/middlewares/not-found');
@@ -41,6 +42,7 @@ app.use(v1, eventsRouter);
 app.use(v1, organizersRouter);
 app.use(v1, authCMSRouter);
 app.use(v1, ordersRouter);
+app.use(v1, userRefreshTokenRouter);
 app.use('/api/v1', participantsRouter);
 
 // Gunakan Middleware
