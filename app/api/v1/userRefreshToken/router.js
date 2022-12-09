@@ -13,6 +13,7 @@ const { index } = require("./controller");
 //   index
 // );
 
-router.get("/refresh-token/:refreshToken/:email", index);
+// router.get("/refresh-token/:refreshToken/:email", index);
+router.get("/refresh-token/:refreshToken", index);
 
 module.exports = router;

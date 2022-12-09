@@ -8,8 +8,8 @@ const index = async (req, res, next) => {
     const result = await getUserRefreshToken(req);
 
     res.status(StatusCodes.OK).json({
-      // data: { token: result },
-      data: result,
+      data: { token: result },
+      // data: result,
     });
   } catch (err) {
     console.log("err");
