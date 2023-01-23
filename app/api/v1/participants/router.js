@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express();
 const {
-  signup,
-  activeParticipant,
-  signin,
-  getAllLandingPage,
-  getDetailLandingPage,
-  getDashboard,
+    signup,
+    activeParticipant,
+    signin,
+    getAllLandingPage,
+    getDetailLandingPage,
+    getDashboard,
+    getAllPayment,
 } = require('./controller');
 const { authenticateParticipant } = require('../../../middlewares/auth');
 
@@ -16,5 +17,6 @@ router.put('/active', activeParticipant);
 router.get('/events', getAllLandingPage);
 router.get('/events/:id', getDetailLandingPage);
 router.get('/orders', authenticateParticipant, getDashboard);
+router.get('/payments/:organizer', authenticateParticipant, getAllPayment);
 
 module.exports = router;
