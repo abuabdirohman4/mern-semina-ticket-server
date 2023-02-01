@@ -8,7 +8,9 @@ const {
     getDetailLandingPage,
     getDashboard,
     getAllPayment,
+    checkout,
 } = require('./controller');
+
 const { authenticateParticipant } = require('../../../middlewares/auth');
 
 router.post('/auth/signup', signup);
@@ -18,5 +20,6 @@ router.get('/events', getAllLandingPage);
 router.get('/events/:id', getDetailLandingPage);
 router.get('/orders', authenticateParticipant, getDashboard);
 router.get('/payments/:organizer', authenticateParticipant, getAllPayment);
+router.post('/checkout', authenticateParticipant, checkout);
 
 module.exports = router;
